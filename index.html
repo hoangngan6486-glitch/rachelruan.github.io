@@ -172,12 +172,22 @@
     .btn:active { transform: scale(.97); }
     .btn.primary { background: linear-gradient(135deg, var(--brand-2), var(--brand)); border: none; color: #fff; }
     .socials { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
-    .socials a {
-      width: 42px; height: 42px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center;
-      background: var(--card); border: 1px solid var(--line); color: var(--chip-text);
-      font-weight: 800; font-size: 13px; text-decoration: none; box-shadow: var(--shadow-sm);
+    .soc {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 6px 15px 6px 6px; border-radius: 999px;
+      background: var(--card); border: 1px solid var(--line); color: var(--ink);
+      font-weight: 600; font-size: 14px; text-decoration: none; box-shadow: var(--shadow-sm);
+      transition: border-color .15s ease;
     }
-    .socials a:hover { border-color: var(--brand); }
+    .soc:hover { border-color: var(--b, var(--brand)); }
+    .soc-ic {
+      width: 30px; height: 30px; border-radius: 9px; flex: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--b, var(--brand)); color: #fff;
+      font-weight: 800; font-size: 10px; letter-spacing: .2px;
+    }
+    .soc-ic svg { width: 18px; height: 18px; display: block; }
+    .link .ic svg { width: 20px; height: 20px; display: block; }
 
     /* ===== Sections ===== */
     section.block { padding: 34px 0; }
@@ -379,6 +389,23 @@
   const $ = id => document.getElementById(id);
   const isHidden = url => !url || /XXXX|0000-0000/.test(url);
 
+  // Brand logos (white glyphs shown on a brand-colored chip) + full app names
+  const IC_PHONE   = `<svg viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.12.35.03.75-.24 1.02z"/></svg>`;
+  const IC_SCHOLAR = `<svg viewBox="0 0 24 24" fill="#fff"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>`;
+  const IC_IN      = `<svg viewBox="0 0 24 24" fill="#fff"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>`;
+  const IC_MAIL    = `<svg viewBox="0 0 24 24" fill="#fff"><path d="M3 5h18a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1zm9 7l8-5H4l8 5zm0 1.2L4 8.2V18h16V8.2l-8 5z"/></svg>`;
+  const IC_PIN     = `<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>`;
+  const SOCIAL = {
+    "Google Scholar": { b: "#4285F4", mark: IC_SCHOLAR },
+    "WhatsApp":       { b: "#25D366", mark: IC_PHONE },
+    "Zalo":           { b: "#0068FF", mark: "Zalo" },
+    "LINE":           { b: "#06C755", mark: "LINE" },
+    "Viber":          { b: "#7360F2", mark: IC_PHONE },
+    "LinkedIn":       { b: "#0A66C2", mark: IC_IN },
+    "Email":          { b: "#EA4335", mark: IC_MAIL },
+    "Location":       { b: "#0F9D58", mark: IC_PIN },
+  };
+
   // Avatar
   const avatarEl = $("avatar");
   const initials = (profile.fullName || "?").trim().split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase();
@@ -406,7 +433,10 @@
   const byLabel = Object.fromEntries(profile.links.map(l => [l.label, l]));
   (profile.heroSocials || []).forEach(label => {
     const l = byLabel[label]; if (!l || isHidden(l.url)) return;
-    const a = document.createElement("a"); a.href = l.url; a.textContent = l.ic; a.title = l.label;
+    const s = SOCIAL[label] || { b: "var(--brand)", mark: label };
+    const a = document.createElement("a"); a.className = "soc"; a.href = l.url; a.title = label;
+    a.style.setProperty("--b", s.b);
+    a.innerHTML = `<span class="soc-ic">${s.mark}</span><span>${label}</span>`;
     if (!l.url.startsWith("#")) { a.target="_blank"; a.rel="noopener"; }
     $("socials").appendChild(a);
   });
@@ -415,9 +445,11 @@
   function renderLinks(labels, targetId){
     (labels || []).forEach(label => {
       const l = byLabel[label]; if (!l || isHidden(l.url)) return;
+      const s = SOCIAL[label];
       const a = document.createElement("a"); a.className="link"; a.href=l.url;
       if (!l.url.startsWith("#")) { a.target="_blank"; a.rel="noopener"; }
-      a.innerHTML = `<span class="ic">${l.ic}</span><span><b>${l.label}</b><small>${l.sub||""}</small></span>`;
+      const ic = s ? `<span class="ic" style="background:${s.b};color:#fff">${s.mark}</span>` : `<span class="ic">${l.ic}</span>`;
+      a.innerHTML = `${ic}<span><b>${l.label}</b><small>${l.sub||""}</small></span>`;
       $(targetId).appendChild(a);
     });
   }
