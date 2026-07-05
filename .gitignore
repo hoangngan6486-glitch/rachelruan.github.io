@@ -1,0 +1,7 @@
+# Local original images (already copied into assets/)
+cat wallpaper.jpg
+ảnh đại diện.jpg
+
+# Python
+__pycache__/
+*.pyc

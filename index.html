@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ngan Nguyen Hoang Thanh — Tourism · AI · Taiwan</title>
+  <meta name="description" content="Personal site & digital business card of Ngan Nguyen Hoang Thanh — PhD Candidate in Tourism & Hospitality, NKUST, Taiwan." />
+
+  <style>
+    :root {
+      --sky-1: #bfe6ff; --sky-2: #e7f5ff; --sky-3: #ffffff;
+      --sun: rgba(255, 244, 214, .9);
+      --ink: #0f2b46; --muted: #567a97;
+      --brand: #0284c7; --brand-2: #38bdf8; --accent: #0ea5e9;
+      --card: rgba(255, 255, 255, .72);
+      --card-solid: #ffffff;
+      --line: rgba(2, 132, 199, .16);
+      --chip: rgba(56, 189, 248, .16); --chip-text: #0369a1;
+      --shadow: 0 18px 45px rgba(13, 71, 116, .16);
+      --shadow-sm: 0 8px 22px rgba(13, 71, 116, .10);
+    }
+    :root[data-theme="dark"], html:not([data-theme="light"]) {
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sky-1: #071233; --sky-2: #0a1a3f; --sky-3: #0b1220;
+        --sun: rgba(148, 163, 255, .18);
+        --ink: #e8f2ff; --muted: #9fbdda;
+        --brand: #7dd3fc; --brand-2: #38bdf8; --accent: #38bdf8;
+        --card: rgba(17, 30, 61, .62);
+        --card-solid: #111e3d;
+        --line: rgba(125, 211, 252, .18);
+        --chip: rgba(56, 189, 248, .14); --chip-text: #7dd3fc;
+        --shadow: 0 18px 45px rgba(0, 0, 0, .5);
+        --shadow-sm: 0 8px 22px rgba(0, 0, 0, .4);
+      }
+    }
+    :root[data-theme="light"] {
+      --sky-1: #bfe6ff; --sky-2: #e7f5ff; --sky-3: #ffffff; --sun: rgba(255,244,214,.9);
+      --ink: #0f2b46; --muted: #567a97; --brand: #0284c7; --brand-2: #38bdf8; --accent: #0ea5e9;
+      --card: rgba(255,255,255,.72); --card-solid:#fff; --line: rgba(2,132,199,.16);
+      --chip: rgba(56,189,248,.16); --chip-text:#0369a1;
+      --shadow: 0 18px 45px rgba(13,71,116,.16); --shadow-sm: 0 8px 22px rgba(13,71,116,.10);
+    }
+    :root[data-theme="dark"] {
+      --sky-1: #071233; --sky-2: #0a1a3f; --sky-3: #0b1220; --sun: rgba(148,163,255,.18);
+      --ink: #e8f2ff; --muted: #9fbdda; --brand: #7dd3fc; --brand-2: #38bdf8; --accent: #38bdf8;
+      --card: rgba(17,30,61,.62); --card-solid:#111e3d; --line: rgba(125,211,252,.18);
+      --chip: rgba(56,189,248,.14); --chip-text:#7dd3fc;
+      --shadow: 0 18px 45px rgba(0,0,0,.5); --shadow-sm: 0 8px 22px rgba(0,0,0,.4);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== Sky background ===== */
+    .sky {
+      position: fixed; inset: 0; z-index: -2;
+      background:
+        radial-gradient(120% 80% at 85% -10%, var(--sun), transparent 60%),
+        linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 42%, var(--sky-3) 100%);
+    }
+    .stars { position: fixed; inset: 0; z-index: -1; opacity: 0; transition: opacity .6s; pointer-events: none; }
+    .cloud {
+      position: fixed; z-index: -1; background: #fff; border-radius: 100px;
+      filter: blur(6px); opacity: .85; pointer-events: none;
+      box-shadow: 40px 10px 0 -6px #fff, 90px 18px 0 -10px #fff, -40px 12px 0 -8px #fff;
+    }
+    .c1 { width: 130px; height: 42px; top: 12%; left: -60px; animation: drift 60s linear infinite; }
+    .c2 { width: 90px; height: 30px; top: 26%; left: -40px; opacity: .7; animation: drift 90s linear infinite; }
+    .c3 { width: 160px; height: 48px; top: 6%; left: -80px; opacity: .55; animation: drift 120s linear infinite; }
+    @keyframes drift { to { transform: translateX(115vw); } }
+    @media (prefers-reduced-motion: reduce) { .cloud { animation: none; } }
+    @media (prefers-color-scheme: dark) {
+      .cloud { display: none; }
+      .stars { opacity: 1;
+        background-image:
+          radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent),
+          radial-gradient(1.5px 1.5px at 70% 20%, #cfe3ff, transparent),
+          radial-gradient(1px 1px at 40% 60%, #fff, transparent),
+          radial-gradient(1px 1px at 85% 50%, #fff, transparent),
+          radial-gradient(1.5px 1.5px at 55% 80%, #dbeafe, transparent),
+          radial-gradient(1px 1px at 12% 75%, #fff, transparent),
+          radial-gradient(1px 1px at 90% 85%, #fff, transparent);
+      }
+    }
+    :root[data-theme="dark"] .cloud { display: none; }
+    :root[data-theme="dark"] .stars { opacity: 1;
+      background-image:
+        radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 70% 20%, #cfe3ff, transparent),
+        radial-gradient(1px 1px at 40% 60%, #fff, transparent),
+        radial-gradient(1px 1px at 85% 50%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 55% 80%, #dbeafe, transparent),
+        radial-gradient(1px 1px at 12% 75%, #fff, transparent),
+        radial-gradient(1px 1px at 90% 85%, #fff, transparent);
+    }
+    :root[data-theme="light"] .cloud { display: block; }
+    :root[data-theme="light"] .stars { opacity: 0; }
+
+    /* ===== Layout ===== */
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    /* ===== Nav ===== */
+    nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: saturate(160%) blur(12px);
+      background: linear-gradient(var(--card), var(--card));
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { font-weight: 800; font-size: 18px; letter-spacing: .2px; color: var(--ink); text-decoration: none; }
+    .brand span { color: var(--brand); }
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14.5px; }
+    .nav-links a:hover { color: var(--brand); }
+    .theme-btn, .menu-btn {
+      background: transparent; border: 1px solid var(--line); color: var(--ink);
+      width: 38px; height: 38px; border-radius: 10px; cursor: pointer; font-size: 16px;
+    }
+    .menu-btn { display: none; }
+    @media (max-width: 680px) {
+      .nav-links {
+        position: absolute; top: 60px; right: 0; left: 0;
+        flex-direction: column; gap: 0; padding: 8px 20px 16px;
+        background: var(--card-solid); border-bottom: 1px solid var(--line);
+        display: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 0; width: 100%; border-bottom: 1px solid var(--line); }
+      .menu-btn { display: inline-block; }
+    }
+
+    /* ===== Hero ===== */
+    header.hero { text-align: center; padding: 26px 0 30px; }
+    .cover { width: 100%; height: 240px; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); }
+    .cover img { width: 100%; height: 100%; object-fit: cover; object-position: center 42%; display: block; }
+    .hellos { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 16px 0 22px; }
+    .hello {
+      background: var(--card); border: 1px solid var(--line); color: var(--ink);
+      padding: 6px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+    .avatar {
+      width: 138px; height: 138px; border-radius: 50%; object-fit: cover;
+      border: 5px solid var(--card-solid);
+      background: linear-gradient(135deg, var(--brand-2), var(--brand));
+      color: #fff; display: inline-flex; align-items: center; justify-content: center;
+      font-size: 48px; font-weight: 700;
+      box-shadow: 0 0 0 8px rgba(56,189,248,.18), var(--shadow);
+      position: relative; z-index: 2; margin-top: -78px;
+    }
+    .hi { font-size: clamp(28px, 6vw, 40px); font-weight: 800; margin: 20px 0 6px; }
+    .hi .wave { display: inline-block; animation: wave 2.4s ease-in-out infinite; transform-origin: 70% 70%; }
+    @keyframes wave { 0%,60%,100%{transform:rotate(0)} 10%{transform:rotate(16deg)} 20%{transform:rotate(-8deg)} 30%{transform:rotate(16deg)} 40%{transform:rotate(-4deg)} 50%{transform:rotate(10deg)} }
+    .tagline { font-size: 17px; font-weight: 700; color: var(--brand); margin: 0 0 10px; }
+    .subrole { color: var(--muted); margin: 0 auto; max-width: 620px; font-size: 15.5px; }
+    .facts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 18px 0 4px; }
+    .fact { font-size: 13.5px; color: var(--muted); background: var(--card); border: 1px solid var(--line); padding: 5px 12px; border-radius: 999px; }
+    .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px;
+      border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 15px;
+      border: 1px solid var(--line); color: var(--ink); background: var(--card); cursor: pointer;
+      box-shadow: var(--shadow-sm); transition: transform .08s ease;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn.primary { background: linear-gradient(135deg, var(--brand-2), var(--brand)); border: none; color: #fff; }
+    .socials { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+    .socials a {
+      width: 42px; height: 42px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center;
+      background: var(--card); border: 1px solid var(--line); color: var(--chip-text);
+      font-weight: 800; font-size: 13px; text-decoration: none; box-shadow: var(--shadow-sm);
+    }
+    .socials a:hover { border-color: var(--brand); }
+
+    /* ===== Sections ===== */
+    section.block { padding: 34px 0; }
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 26px; box-shadow: var(--shadow); backdrop-filter: blur(6px); }
+    .eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); font-weight: 800; margin: 0 0 6px; }
+    .h2 { font-size: 24px; font-weight: 800; margin: 0 0 16px; }
+    .lead { color: var(--muted); font-size: 16px; margin: 0; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+    .tag { background: var(--chip); color: var(--chip-text); padding: 8px 15px; border-radius: 999px; font-size: 14px; font-weight: 700; }
+
+    .pub { padding: 16px 0; border-top: 1px dashed var(--line); }
+    .pub:first-of-type { border-top: none; padding-top: 0; }
+    .pub a { color: var(--ink); text-decoration: none; font-weight: 700; font-size: 16px; }
+    .pub a:hover { color: var(--brand); }
+    .pub .meta { color: var(--muted); font-size: 14px; margin-top: 3px; }
+    .pub .venue { font-style: italic; }
+
+    .links { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .link { display: flex; align-items: center; gap: 12px; padding: 13px; border: 1px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); background: var(--card-solid); }
+    .link:hover { border-color: var(--brand); }
+    .link .ic { width: 38px; height: 38px; border-radius: 11px; flex: none; display: flex; align-items: center; justify-content: center; background: var(--chip); color: var(--chip-text); font-weight: 800; font-size: 14px; }
+    .link b { font-size: 14.5px; }
+    .link small { display: block; color: var(--muted); font-weight: 400; font-size: 12.5px; }
+
+    .qr-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 440px; margin: 4px auto 0; }
+    .qr-item { text-align: center; }
+    .qr-box { background: #fff; border-radius: 16px; padding: 12px; min-height: 160px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+    .qr-box img, .qr-box canvas { display: block; width: 100%; height: auto; max-width: 160px; border-radius: 8px; }
+    .qr-cap { margin-top: 10px; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 7px; }
+    .qr-cap .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    .bigqr { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+    #qrcode { padding: 14px; background: #fff; border-radius: 16px; box-shadow: var(--shadow); }
+    #qrcode img, #qrcode canvas { display: block; }
+    .bigqr p { color: var(--muted); font-size: 14px; max-width: 240px; }
+
+    footer { text-align: center; color: var(--muted); font-size: 13px; padding: 30px 0 46px; }
+    .mt { margin-top: 22px; }
+  </style>
+</head>
+<body>
+  <div class="sky"></div>
+  <div class="stars"></div>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+
+  <nav>
+    <div class="wrap nav-in">
+      <a href="#home" class="brand">Rachel <span>✦</span></a>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#connect">Connect</a>
+        </div>
+        <button class="theme-btn" id="themeBtn" title="Toggle day / night sky">🌙</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <header class="hero" id="home">
+      <div class="cover" id="cover"><img id="coverImg" alt="Cover" /></div>
+      <img id="avatar" class="avatar" alt="Profile photo" />
+      <div class="hellos" id="hellos"></div>
+      <h1 class="hi">Hi, I'm <span id="firstName"></span>! <span class="wave">👋</span></h1>
+      <p class="tagline" id="tagline"></p>
+      <p class="subrole" id="subrole"></p>
+      <div class="facts" id="facts"></div>
+      <div class="cta">
+        <button class="btn primary" id="saveContact">💾 Save my contact</button>
+        <a class="btn" id="emailBtn" href="#">✉️ Email me</a>
+      </div>
+      <div class="socials" id="socials"></div>
+    </header>
+
+    <section class="block" id="about">
+      <div class="panel">
+        <p class="eyebrow">About me</p>
+        <h2 class="h2">A little about my journey ☁️</h2>
+        <p class="lead" id="about"></p>
+      </div>
+    </section>
+
+    <section class="block" id="research">
+      <div class="panel">
+        <p class="eyebrow">Research</p>
+        <h2 class="h2">What I explore 🔭</h2>
+        <p class="lead" id="researchLead"></p>
+        <div class="tags mt" id="interests"></div>
+        <div class="links mt" id="researchLinks"></div>
+      </div>
+    </section>
+
+    <section class="block" id="publications">
+      <div class="panel">
+        <h2 class="h2">Publications</h2>
+        <div id="pubs"></div>
+      </div>
+    </section>
+
+    <section class="block" id="connect">
+      <div class="panel">
+        <p class="eyebrow">Connect</p>
+        <h2 class="h2">Let's stay in touch 🌤️</h2>
+        <p class="lead">Scan a code with the matching app to add me — or tap <b>Save my contact</b>.</p>
+
+        <div class="qr-gallery mt" id="qrGallery"></div>
+        <div class="links mt" id="connectLinks"></div>
+
+        <div class="bigqr">
+          <div id="qrcode"></div>
+          <p>Scan to open this page — or tap <b>Save my contact</b> to add me straight to your phone.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Built with 💙 under a Kaohsiung sky · <span id="year"></span></footer>
+
+  <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@04f46c6a0708c9a09fd4e0272f104e2fb57030d0/qrcode.min.js"></script>
+
+  <script>
+  /* ================================================================
+     👉 EDIT ONLY THIS `profile` OBJECT
+     ================================================================ */
+  const profile = {
+    firstName: "Ngan",
+    lastName:  "Nguyen Hoang Thanh",
+    fullName:  "Ngan Nguyen Hoang Thanh",
+    nickname:  "Rachel",                  // friendly name shown in the "Hi, I'm ___!" greeting
+    role:      "PhD Candidate",
+    org:       "National Kaohsiung University of Science and Technology",
+    avatar:    "assets/avatar.jpg",       // your photo; falls back to initials if missing
+    cover:     "assets/cover.jpg",        // banner image at the top (cat wallpaper); leave "" to hide
+
+    hellos:  ["Xin chào 🇻🇳", "Hello 👋", "你好 🇹🇼"],
+    tagline: "✨ Tourism & Hospitality",
+    subrole: "PhD Candidate at National Kaohsiung University of Science and Technology (NKUST).",
+    facts:   ["📍 Kaohsiung, Taiwan", "🌱 From Vietnam", "🗣️ EN · 中文 · Tiếng Việt"],
+
+    about: "I'm a Vietnamese PhD candidate in Tourism & Hospitality at the National Kaohsiung University of Science and Technology (NKUST) in Taiwan. My work looks at where technology and human experience meet in travel — from AI in tourism and customer behavior to agritourism and community livelihood development. I love turning research into ideas that make tourism more meaningful, sustainable, and welcoming.",
+
+    researchLead: "My research sits at the crossroads of people, place, and technology in tourism. Current interests include:",
+
+    // --- Contact ---
+    email:   "hoangngan6486@gmail.com",
+    phone:   "+84981361339",              // Vietnam (Call / WhatsApp / Zalo)
+    phoneTW: "+886973908284",             // Taiwan (LINE / Viber)
+    address: "48A Nguyen Tuan, Hanh Thong District, Ho Chi Minh City",
+
+    // --- Links (a link with XXXX stays hidden until you fill it) ---
+    links: [
+      { label: "Email",          sub: "hoangngan6486@gmail.com", ic: "@",  url: "mailto:hoangngan6486@gmail.com" },
+      { label: "Google Scholar", sub: "Publications",            ic: "GS", url: "https://scholar.google.com/citations?user=OMXGquMAAAAJ&hl=en" },
+      { label: "WhatsApp",       sub: "+84 98 136 1339",         ic: "Wa", url: "https://wa.me/84981361339" },
+      { label: "Zalo",           sub: "098 136 1339",            ic: "Za", url: "https://zalo.me/84981361339" },
+      { label: "LINE",           sub: "+886 973 908 284",        ic: "Li", url: "#connect" },
+      { label: "Viber",          sub: "+886 973 908 284",        ic: "Vi", url: "viber://add?number=886973908284" },
+      { label: "Location",       sub: "Ho Chi Minh City",        ic: "📍", url: "https://www.google.com/maps/search/?api=1&query=48A+Nguyen+Tuan+Hanh+Thong+Ho+Chi+Minh+City" },
+      { label: "LinkedIn",       sub: "Professional profile",    ic: "in", url: "https://www.linkedin.com/in/nguyen-hoang-thanh-ngan-58604b340/" },
+    ],
+
+    // Social row shown under the hero (uses the same link entries by label)
+    heroSocials: ["Google Scholar", "WhatsApp", "Zalo", "LINE", "Viber", "LinkedIn"],
+    // "Research profile & links" grid — keep just Scholar
+    researchLinks: ["Google Scholar"],
+    // Small links kept in the Connect section (LinkedIn stays hidden until you fill it)
+    connectLinks: ["Email", "Location", "LinkedIn"],
+
+    interests: ["Tourism & Hospitality", "AI in Tourism", "Customer Behavior", "Agritourism", "Livelihood Development"],
+
+    publications: [
+      { title: "The impact of a friendly tourism environment on tourists' willingness to pay more: A comparative study",
+        venue: "Tourism Review, 81(4), 1265–1297", year: 2026,
+        url: "https://scholar.google.com/scholar?q=The+impact+of+a+friendly+tourism+environment+on+tourists+willingness+to+pay+more" },
+      { title: "The role of public–private partnerships in the development of agritourism: the case of Vinh Long, Vietnam",
+        venue: "Cogent Social Sciences, 11(1), 2505123", year: 2025,
+        url: "https://doi.org/10.1080/23311886.2025.2505123" },
+      { title: "Cultivating customer perceptions of food preparation transparency: a comprehensive investigation into restaurant branding",
+        venue: "British Food Journal, 127(10), 3793–3812", year: 2025,
+        url: "https://scholar.google.com/scholar?q=Cultivating+customer+perceptions+of+food+preparation+transparency+restaurant+branding" },
+    ],
+
+    // Save each screenshot into assets/ with these names; until then a QR is auto-made from `data`.
+    qrGallery: [
+      { label: "WhatsApp", img: "assets/qr-whatsapp.png", data: "https://wa.me/84981361339",       brand: "#25D366" },
+      { label: "LINE",     img: "assets/qr-line.png",     data: "https://line.me/",                brand: "#06C755" },
+      { label: "Viber",    img: "assets/qr-viber.png",    data: "viber://add?number=886973908284", brand: "#7360F2" },
+      { label: "Zalo",     img: "assets/qr-zalo.png",     data: "https://zalo.me/84981361339",     brand: "#0068FF" },
+    ],
+  };
+
+  /* ================== NO NEED TO EDIT BELOW ================== */
+  const $ = id => document.getElementById(id);
+  const isHidden = url => !url || /XXXX|0000-0000/.test(url);
+
+  // Avatar
+  const avatarEl = $("avatar");
+  const initials = (profile.fullName || "?").trim().split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase();
+  if (profile.avatar) { avatarEl.src = profile.avatar; avatarEl.onerror = () => avatarEl.replaceWith(makeInitials()); }
+  else avatarEl.replaceWith(makeInitials());
+  function makeInitials(){ const d=document.createElement("div"); d.className="avatar"; d.textContent=initials; return d; }
+
+  // Cover banner
+  if (profile.cover) { $("coverImg").src = profile.cover; $("coverImg").onerror = () => $("cover").remove(); }
+  else $("cover").remove();
+
+  // Hero text
+  $("firstName").textContent = profile.nickname || profile.firstName;
+  $("tagline").textContent   = profile.tagline;
+  $("subrole").textContent   = profile.subrole;
+  $("about").textContent     = profile.about;
+  $("researchLead").textContent = profile.researchLead;
+  $("emailBtn").href = "mailto:" + profile.email;
+  $("year").textContent = new Date().getFullYear();
+
+  profile.hellos.forEach(h => { const s=document.createElement("span"); s.className="hello"; s.textContent=h; $("hellos").appendChild(s); });
+  profile.facts.forEach(f => { const s=document.createElement("span"); s.className="fact"; s.textContent=f; $("facts").appendChild(s); });
+
+  // Hero socials
+  const byLabel = Object.fromEntries(profile.links.map(l => [l.label, l]));
+  (profile.heroSocials || []).forEach(label => {
+    const l = byLabel[label]; if (!l || isHidden(l.url)) return;
+    const a = document.createElement("a"); a.href = l.url; a.textContent = l.ic; a.title = l.label;
+    if (!l.url.startsWith("#")) { a.target="_blank"; a.rel="noopener"; }
+    $("socials").appendChild(a);
+  });
+
+  // Links — render a chosen set of labels into a target grid
+  function renderLinks(labels, targetId){
+    (labels || []).forEach(label => {
+      const l = byLabel[label]; if (!l || isHidden(l.url)) return;
+      const a = document.createElement("a"); a.className="link"; a.href=l.url;
+      if (!l.url.startsWith("#")) { a.target="_blank"; a.rel="noopener"; }
+      a.innerHTML = `<span class="ic">${l.ic}</span><span><b>${l.label}</b><small>${l.sub||""}</small></span>`;
+      $(targetId).appendChild(a);
+    });
+  }
+  renderLinks(profile.researchLinks, "researchLinks");
+  renderLinks(profile.connectLinks, "connectLinks");
+
+  // Interests
+  profile.interests.forEach(t => { const s=document.createElement("span"); s.className="tag"; s.textContent=t; $("interests").appendChild(s); });
+
+  // Publications
+  profile.publications.forEach(p => {
+    const div=document.createElement("div"); div.className="pub";
+    const title = p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.title}</a>` : `<span>${p.title}</span>`;
+    div.innerHTML = `${title}<div class="meta"><span class="venue">${p.venue||""}</span>${p.year?" • "+p.year:""}</div>`;
+    $("pubs").appendChild(div);
+  });
+
+  // Messaging QR gallery (screenshot image if present, else generated from link)
+  (profile.qrGallery || []).forEach(item => {
+    const card=document.createElement("div"); card.className="qr-item";
+    const box=document.createElement("div"); box.className="qr-box";
+    const cap=document.createElement("div"); cap.className="qr-cap";
+    cap.innerHTML=`<span class="dot" style="background:${item.brand}"></span>${item.label}`;
+    const gen=()=>{ box.innerHTML=""; try{ if(window.QRCode) new QRCode(box,{text:item.data,width:150,height:150,colorDark:"#0f2b46",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M}); else box.textContent="QR"; }catch(e){ box.textContent="QR"; } };
+    if(item.img){ const img=new Image(); img.alt=item.label+" QR"; img.onload=()=>{ box.innerHTML=""; box.appendChild(img); }; img.onerror=gen; img.src=item.img; }
+    else gen();
+    card.appendChild(box); card.appendChild(cap); $("qrGallery").appendChild(card);
+  });
+
+  // vCard
+  $("saveContact").addEventListener("click", () => {
+    const scholar=(profile.links.find(l=>/scholar/i.test(l.label))||{}).url||"";
+    const vcard=["BEGIN:VCARD","VERSION:3.0",
+      `N:${profile.lastName};${profile.firstName};;;`, `FN:${profile.fullName}`,
+      `TITLE:${profile.role}`, `ORG:${profile.org}`,
+      profile.phone?`TEL;TYPE=CELL:${profile.phone}`:"", profile.phoneTW?`TEL;TYPE=CELL:${profile.phoneTW}`:"",
+      profile.email?`EMAIL;TYPE=INTERNET:${profile.email}`:"", scholar?`URL:${scholar}`:"",
+      profile.address?`ADR;TYPE=WORK:;;${profile.address};;;;`:"",
+      `NOTE:${(profile.interests||[]).join(", ")}`, "END:VCARD"].filter(Boolean).join("\r\n");
+    const blob=new Blob([vcard],{type:"text/vcard;charset=utf-8"}); const url=URL.createObjectURL(blob);
+    const a=document.createElement("a"); a.href=url; a.download=`${profile.fullName.replace(/\s+/g,"_")}.vcf`;
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  });
+
+  // Big QR = this page URL
+  try { if(window.QRCode) new QRCode($("qrcode"),{text:location.href,width:150,height:150,colorDark:"#0f2b46",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M}); else $("qrcode").textContent="Internet needed."; }
+  catch(e){ $("qrcode").textContent="Could not create QR."; }
+
+  // Nav: mobile menu + theme toggle
+  const navLinks=$("navLinks"), menuBtn=$("menuBtn");
+  menuBtn.addEventListener("click", ()=> navLinks.classList.toggle("open"));
+  navLinks.querySelectorAll("a").forEach(a=> a.addEventListener("click", ()=> navLinks.classList.remove("open")));
+
+  const themeBtn=$("themeBtn");
+  const saved=localStorage.getItem("sky-theme");
+  const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
+  let dark = saved ? saved==="dark" : prefersDark;
+  applyTheme();
+  themeBtn.addEventListener("click", ()=>{ dark=!dark; localStorage.setItem("sky-theme", dark?"dark":"light"); applyTheme(); });
+  function applyTheme(){ document.documentElement.setAttribute("data-theme", dark?"dark":"light"); themeBtn.textContent = dark ? "☀️" : "🌙"; }
+  </script>
+</body>
+</html>
